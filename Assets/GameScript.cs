@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -13,6 +15,7 @@ public class GameScript : MonoBehaviour
     public GameObject Diamond;
     public GameObject Cow;
 
+    //[SerializeField] private GameObject Joystick;
     private CowScript CowScript;
 
     private float LeftConstraint;
@@ -100,7 +103,16 @@ public class GameScript : MonoBehaviour
     {
         foreach (var wolfScript in WolfScripts)
         {
-            wolfScript.Direction = new Vector2(Random.Range(-2f, +2f), Random.Range(-2f, +2f));
+            var speedHorz = Random.Range(-2f, +2f);
+            var speedVert = Random.Range(-2f, +2f);
+            
+            while (speedHorz < 0.5f && speedVert < 0.5f)
+            {
+                speedHorz = Random.Range(-2f, +2f);
+                speedVert = Random.Range(-2f, +2f);
+            }
+            
+            wolfScript.Direction = new Vector2(speedHorz, speedVert);
         }
     }
 
@@ -122,18 +134,30 @@ public class GameScript : MonoBehaviour
             FailGame();
     }
 
+    private const float JoystickRight = 115;
+    private const float JoystickTop = 115;
+    
     void InitDiamonds()
     {
+        var joystickRightTopWorld = Camera.main.ScreenToWorldPoint(new Vector3(JoystickRight, JoystickTop));
+        
         var offsetHorz = (RightConstraint - LeftConstraint) * 0.025f;
         var offsetVert = (TopConstraint - BottomConstraint) * 0.025f;
 
         for (var i = 0; i < GameSettings.DiamondCount; i++)
         {
+            var x = Random.Range(LeftConstraint + offsetHorz, RightConstraint - offsetHorz);
+            var y = Random.Range(BottomConstraint + offsetVert, TopConstraint - offsetVert);
+
+            while (x < joystickRightTopWorld.x && y < joystickRightTopWorld.y) // TODO: считать положение джойстика по-честному
+            {
+                x = Random.Range(LeftConstraint + offsetHorz, RightConstraint - offsetHorz);
+                y = Random.Range(BottomConstraint + offsetVert, TopConstraint - offsetVert);
+            }
+            
             var clone = Instantiate(
                 Diamond,
-                new Vector2(
-                    Random.Range(LeftConstraint + offsetHorz, RightConstraint - offsetHorz),
-                    Random.Range(BottomConstraint + offsetVert, TopConstraint - offsetVert)),
+                new Vector2(x,y),
                 Quaternion.identity);
 
             var diamondScript = clone.GetComponent<DiamondScript>();

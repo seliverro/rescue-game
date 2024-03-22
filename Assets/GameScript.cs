@@ -91,7 +91,20 @@ public class GameScript : MonoBehaviour
 
             var wolfScript = clone.GetComponent<WolfScript>();
             wolfScript.CowTouched += WolfScriptOnCowTouched;
-            wolfScript.GetPausedStatus = () => Paused;
+
+            wolfScript.GetPausedStatus = () => true; // волки пока на паузе
+
+            // set direction
+            var speedHorz = Random.Range(-2f, +2f);
+            var speedVert = Random.Range(-2f, +2f);
+            
+            while (speedHorz < 0.5f && speedVert < 0.5f)
+            {
+                speedHorz = Random.Range(-2f, +2f);
+                speedVert = Random.Range(-2f, +2f);
+            }
+            
+            wolfScript.SetDirection(new Vector2(speedHorz, speedVert));
 
             WolfScripts.Add(wolfScript);
 
@@ -103,16 +116,7 @@ public class GameScript : MonoBehaviour
     {
         foreach (var wolfScript in WolfScripts)
         {
-            var speedHorz = Random.Range(-2f, +2f);
-            var speedVert = Random.Range(-2f, +2f);
-            
-            while (speedHorz < 0.5f && speedVert < 0.5f)
-            {
-                speedHorz = Random.Range(-2f, +2f);
-                speedVert = Random.Range(-2f, +2f);
-            }
-            
-            wolfScript.Direction = new Vector2(speedHorz, speedVert);
+            wolfScript.GetPausedStatus = () => Paused; // волки пока на паузе
         }
     }
 
@@ -148,12 +152,6 @@ public class GameScript : MonoBehaviour
         {
             var x = Random.Range(LeftConstraint + offsetHorz, RightConstraint - offsetHorz);
             var y = Random.Range(BottomConstraint + offsetVert, TopConstraint - offsetVert);
-
-            while (x < joystickRightTopWorld.x && y < joystickRightTopWorld.y) // TODO: считать положение джойстика по-честному
-            {
-                x = Random.Range(LeftConstraint + offsetHorz, RightConstraint - offsetHorz);
-                y = Random.Range(BottomConstraint + offsetVert, TopConstraint - offsetVert);
-            }
             
             var clone = Instantiate(
                 Diamond,

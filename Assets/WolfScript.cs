@@ -18,13 +18,14 @@ public class WolfScript : MonoBehaviour
     private float BottomConstraint;
 
     private const float _BUFFER = 0.1f;
-    private CircleCollider2D Collider, CowCollider;
+    private PolygonCollider2D Collider; 
+    private CircleCollider2D CowCollider;
     public Func<bool> GetPausedStatus;
 
     // Start is called before the first frame update
     private void Start()
     {
-        Collider = GetComponent<CircleCollider2D>();
+        Collider = GetComponent<PolygonCollider2D>();
         CowCollider = Cow.GetComponent<CircleCollider2D>();
         
         LeftConstraint = Camera.main.ScreenToWorldPoint( new Vector3(0.0f, 0.0f) ).x;
@@ -66,4 +67,18 @@ public class WolfScript : MonoBehaviour
             Rigidbody2D.MovePosition(new Vector2(Rigidbody2D.position.x, TopConstraint));
         }
     }
+
+    public void SetDirection(Vector2 direction)
+    {
+        Direction = direction;
+        
+        var euler = transform.eulerAngles;
+	    euler.z = UnityEngine.Random.Range(0.0f, 360.0f);
+	    transform.eulerAngles = euler;
+
+        if ( Direction.x > 0)
+        {
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+    } 
 }

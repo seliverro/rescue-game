@@ -19,14 +19,14 @@ public class WolfScript : MonoBehaviour
 
     private const float _BUFFER = 0.1f;
     private PolygonCollider2D Collider; 
-    private CircleCollider2D CowCollider;
+    private CapsuleCollider2D CowCollider;
     public Func<bool> GetPausedStatus;
 
     // Start is called before the first frame update
     private void Start()
     {
         Collider = GetComponent<PolygonCollider2D>();
-        CowCollider = Cow.GetComponent<CircleCollider2D>();
+        CowCollider = Cow.GetComponent<CapsuleCollider2D>();
         
         LeftConstraint = Camera.main.ScreenToWorldPoint( new Vector3(0.0f, 0.0f) ).x;
         RightConstraint = Camera.main.ScreenToWorldPoint( new Vector3(Screen.width, 0.0f) ).x;

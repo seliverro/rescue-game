@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e462ac0a8351fe41bc50b2b13eac95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CowCollider: {fileID: 1220268666}
+  CowCollider: {fileID: 1220268670}
 --- !u!58 &860188397
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1308,8 +1308,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.29, y: 0.46}
+  m_Offset: {x: -0.0012106374, y: 0}
+  m_Size: {x: 0.20525382, y: 0.31956345}
   m_Direction: 0
 --- !u!1 &1178238523
 GameObject:
@@ -1400,10 +1400,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1220268665}
   - component: {fileID: 1220268664}
-  - component: {fileID: 1220268666}
   - component: {fileID: 1220268667}
   - component: {fileID: 1220268668}
   - component: {fileID: 1220268669}
+  - component: {fileID: 1220268670}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -1452,8 +1452,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.089711644, g: 0.27372453, b: 0.9056604, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1762b07c4aad3cb4eb28a2f829f606c2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1478,41 +1478,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1220268666
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220268663}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08
 --- !u!114 &1220268667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,6 +1550,41 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!70 &1220268670
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220268663}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0038021505}
+  m_Size: {x: 0.26916623, y: 0.45913106}
+  m_Direction: 0
 --- !u!1 &1261285558
 GameObject:
   m_ObjectHideFlags: 0

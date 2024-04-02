@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DiamondScript : MonoBehaviour
 {
-    public CircleCollider2D CowCollider;
+    public CapsuleCollider2D CowCollider;
     
     public event EventHandler CowTouched;
     private CapsuleCollider2D Collider;

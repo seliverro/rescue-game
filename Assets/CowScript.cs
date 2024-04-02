@@ -44,6 +44,14 @@ public class CowScript : MonoBehaviour
     {
         if (!Paused)
         {
+            if (Direction != Vector2.zero)
+            {
+                float angle = Mathf.Atan2( Direction.y , Direction.x ) * Mathf.Rad2Deg;
+                var euler = transform.eulerAngles;
+                euler.z = angle - 90;
+                transform.eulerAngles = euler;
+            }
+
             Rigidbody2D.MovePosition(Rigidbody2D.position + Direction * (Speed * Time.fixedDeltaTime));
         }
     }
